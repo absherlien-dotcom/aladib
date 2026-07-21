@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="525" viewBox="0 0 1200 525" role="img" aria-labelledby="title desc">
+  <title id="title">اتصال آمن ومستقر</title><desc id="desc">بنر إعلاني عن أمان واستقرار شبكة الأديب نت</desc>
+  <defs>
+    <linearGradient id="bg" x1="60" y1="30" x2="1140" y2="500" gradientUnits="userSpaceOnUse"><stop stop-color="#06142F"/><stop offset=".5" stop-color="#0A275A"/><stop offset="1" stop-color="#073D4E"/></linearGradient>
+    <linearGradient id="shield" x1="60" y1="30" x2="240" y2="280" gradientUnits="userSpaceOnUse"><stop stop-color="#72ECFF"/><stop offset="1" stop-color="#1668FF"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="16"/></filter>
+  </defs>
+  <rect width="1200" height="525" fill="url(#bg)"/>
+  <circle cx="980" cy="80" r="245" fill="#25D7FF" opacity=".08"/>
+  <circle cx="180" cy="480" r="250" fill="#1668FF" opacity=".12"/>
+  <g opacity=".13" stroke="#9DEFFF"><path d="M0 90h1200M0 170h1200M0 250h1200M0 330h1200M0 410h1200"/><path d="M110 0v525M240 0v525M370 0v525M500 0v525M630 0v525M760 0v525M890 0v525M1020 0v525"/></g>
+  <g transform="translate(740 92)">
+    <path d="M170 8 62 50v94c0 92 57 166 108 190 51-24 108-98 108-190V50L170 8Z" fill="#25D7FF" opacity=".16" filter="url(#glow)"/>
+    <path d="M170 8 62 50v94c0 92 57 166 108 190 51-24 108-98 108-190V50L170 8Z" fill="#071A3C" stroke="url(#shield)" stroke-width="5"/>
+    <rect x="116" y="128" width="108" height="92" rx="20" fill="#0E315F" stroke="#72ECFF" stroke-opacity=".6" stroke-width="3"/>
+    <path d="M139 128V98c0-45 62-45 62 0v30" fill="none" stroke="#F5C55B" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="170" cy="171" r="11" fill="#72ECFF"/>
+    <path d="M170 182v16" stroke="#72ECFF" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g font-family="Tahoma,Arial" text-anchor="end">
+    <text x="650" y="154" fill="#67E8FF" font-size="28" font-weight="700">أمانك أولويتنا</text>
+    <text x="650" y="225" fill="#fff" font-size="57" font-weight="800">اتصال أكثر أمانًا</text>
+    <text x="650" y="282" fill="#D9E8FF" font-size="26">شبكة مستقرة وتجربة دخول واضحة وموثوقة</text>
+    <g transform="translate(310 328)">
+      <rect width="340" height="70" rx="35" fill="#47E3A2" fill-opacity=".1" stroke="#47E3A2" stroke-opacity=".35"/>
+      <circle cx="305" cy="35" r="8" fill="#47E3A2"/>
+      <text x="278" y="44" fill="#CFFFF0" font-size="24" font-weight="700">الشبكة تعمل بكفاءة</text>
+    </g>
+  </g>
+</svg>
