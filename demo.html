@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#071733" />
+  <title>معاينة واجهة الأديب نت</title>
+  <style>
+    html,body,iframe{width:100%;height:100%;margin:0;border:0;background:#030c22}
+    .loading{position:fixed;inset:0;display:grid;place-items:center;color:#fff;font-family:Tahoma,Arial;background:#030c22}
+  </style>
+</head>
+<body>
+  <div class="loading" id="loading">جارٍ تحميل المعاينة...</div>
+  <iframe id="preview" title="معاينة واجهة الأديب نت"></iframe>
+  <script>
+    fetch('index.html')
+      .then(response=>response.text())
+      .then(html=>{
+        const clean=html
+          .replace(/\$\(if[^)]*\)/g,'')
+          .replace(/\$\(endif\)/g,'')
+          .replace(/\$\(link-login-only\)/g,'#')
+          .replace(/\$\(link-orig\)/g,'')
+          .replace(/\$\(error\)/g,'')
+          .replace(/\$\(chap-id\)/g,'')
+          .replace(/\$\(chap-challenge\)/g,'')
+          .replace('<form id="loginForm"','<form id="loginForm" onsubmit="event.preventDefault(); return false;"');
+        document.getElementById('preview').srcdoc=clean;
+        document.getElementById('loading').remove();
+      })
+      .catch(()=>{document.getElementById('loading').textContent='تعذر تحميل المعاينة.'});
+  </script>
+</body>
+</html>
