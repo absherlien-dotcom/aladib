@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="525" viewBox="0 0 1200 525" role="img" aria-labelledby="title desc">
+  <title id="title">عروض وباقات الأديب نت</title><desc id="desc">بنر إعلاني للباقات ونقاط البيع</desc>
+  <defs>
+    <linearGradient id="bg" x1="65" y1="20" x2="1130" y2="510" gradientUnits="userSpaceOnUse"><stop stop-color="#07142E"/><stop offset=".52" stop-color="#17276B"/><stop offset="1" stop-color="#5B2B82"/></linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D7FF"/><stop offset="1" stop-color="#1668FF"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".35"/></filter>
+  </defs>
+  <rect width="1200" height="525" fill="url(#bg)"/>
+  <circle cx="1020" cy="70" r="240" fill="#F5C55B" opacity=".07"/>
+  <circle cx="130" cy="480" r="260" fill="#25D7FF" opacity=".09"/>
+  <path d="M0 420C230 340 425 455 650 326s380-142 550-100" fill="none" stroke="#67E8FF" stroke-opacity=".18" stroke-width="3"/>
+  <g transform="translate(770 96) rotate(-8 150 145)" filter="url(#shadow)">
+    <rect x="25" y="32" width="290" height="195" rx="34" fill="#051431" stroke="#fff" stroke-opacity=".16" stroke-width="2"/>
+    <rect x="0" y="68" width="290" height="195" rx="34" fill="url(#card)"/>
+    <path d="M35 118h220" stroke="#fff" stroke-opacity=".24" stroke-width="2"/>
+    <path d="M36 164c58-51 139-51 197 0M78 192c34-29 76-29 110 0" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".94"/>
+    <circle cx="133" cy="220" r="8" fill="#F5C55B"/>
+    <text x="250" y="98" fill="#fff" text-anchor="end" font-family="Tahoma,Arial" font-size="25" font-weight="700">الأديب نت</text>
+  </g>
+  <g font-family="Tahoma,Arial" text-anchor="end">
+    <text x="650" y="145" fill="#F5C55B" font-size="28" font-weight="700">باقات متنوعة لكل استخدام</text>
+    <text x="650" y="218" fill="#fff" font-size="57" font-weight="800">اختر الباقة الأنسب لك</text>
+    <text x="650" y="277" fill="#D9E8FF" font-size="26">خيارات مرنة للتصفح، المشاهدة، الألعاب والعمل</text>
+    <rect x="336" y="332" width="314" height="67" rx="34" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-opacity=".22"/>
+    <text x="621" y="376" fill="#fff" font-size="24" font-weight="700">اعثر على أقرب نقطة بيع</text>
+  </g>
+</svg>
