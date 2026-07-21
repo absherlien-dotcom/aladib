@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="525" viewBox="0 0 1200 525" role="img" aria-labelledby="title desc">
+  <title id="title">سرعة فائقة من الأديب نت</title><desc id="desc">بنر إعلاني عصري للسرعة العالية</desc>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="20" x2="1120" y2="505" gradientUnits="userSpaceOnUse"><stop stop-color="#06142F"/><stop offset=".55" stop-color="#0B3B9D"/><stop offset="1" stop-color="#087FAF"/></linearGradient>
+    <linearGradient id="beam" x1="150" y1="80" x2="1050" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#67E8FF" stop-opacity="0"/><stop offset=".48" stop-color="#67E8FF"/><stop offset="1" stop-color="#1668FF" stop-opacity="0"/></linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <rect width="1200" height="525" fill="url(#bg)"/>
+  <circle cx="1030" cy="90" r="210" fill="#25D7FF" opacity=".09"/>
+  <circle cx="120" cy="480" r="250" fill="#1668FF" opacity=".14"/>
+  <path d="M-50 430C235 295 440 432 690 230S1050 50 1260 95" fill="none" stroke="url(#beam)" stroke-width="12" opacity=".72" filter="url(#blur)"/>
+  <path d="M-50 430C235 295 440 432 690 230S1050 50 1260 95" fill="none" stroke="#8CF1FF" stroke-width="2" opacity=".8"/>
+  <g opacity=".3" stroke="#9BEFFF"><path d="M820 65h250M780 105h325M740 145h360M700 185h340"/></g>
+  <g transform="translate(760 118)">
+    <circle cx="138" cy="138" r="118" fill="#071A3C" stroke="#63E7FF" stroke-opacity=".35" stroke-width="3"/>
+    <path d="M68 146a70 70 0 0 1 140 0" fill="none" stroke="#4DDFFF" stroke-width="13" stroke-linecap="round"/>
+    <path d="m138 146 55-55" stroke="#F5C55B" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="138" cy="146" r="13" fill="#fff"/>
+    <path d="M53 180h170" stroke="#fff" stroke-opacity=".18" stroke-width="2"/>
+    <text x="138" y="224" fill="#fff" text-anchor="middle" font-family="Tahoma,Arial" font-size="31" font-weight="700">سرعة فائقة</text>
+  </g>
+  <g font-family="Tahoma,Arial" text-anchor="end">
+    <text x="650" y="160" fill="#67E8FF" font-size="28" font-weight="700">شبكة الأديب نت</text>
+    <text x="650" y="230" fill="#fff" font-size="58" font-weight="800">أسرع مما تتوقع</text>
+    <text x="650" y="287" fill="#D9E8FF" font-size="26">تصفح، شاهد والعب باتصال ثابت وسريع</text>
+    <rect x="335" y="337" width="315" height="66" rx="33" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-opacity=".22"/>
+    <text x="625" y="380" fill="#F5C55B" font-size="25" font-weight="700">اختر سرعتك وسجّل الدخول الآن</text>
+  </g>
+</svg>
