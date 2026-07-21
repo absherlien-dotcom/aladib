@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="theme-color" content="#071b45" />
+  <meta name="description" content="بوابة تسجيل الدخول لشبكة الأديب نت اللاسلكية" />
+  <title>الأديب نت | تسجيل الدخول</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --navy-950:#030c22;
+      --navy-900:#071733;
+      --navy-850:#0a2048;
+      --blue-700:#0b4dda;
+      --blue-600:#1668ff;
+      --cyan-400:#25d7ff;
+      --cyan-300:#67e8ff;
+      --gold-400:#f5c55b;
+      --white:#fff;
+      --muted:#a9b8d7;
+      --danger:#ff5d76;
+      --success:#47e3a2;
+      --card:rgba(8,29,67,.72);
+      --line:rgba(255,255,255,.11);
+      --shadow:0 26px 70px rgba(0,0,0,.34);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--white);
+      font-family:"Tajawal","Cairo","Noto Kufi Arabic",Tahoma,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 12% 8%,rgba(37,215,255,.16),transparent 25%),
+        radial-gradient(circle at 88% 22%,rgba(22,104,255,.22),transparent 30%),
+        radial-gradient(circle at 60% 90%,rgba(83,51,237,.14),transparent 30%),
+        linear-gradient(145deg,var(--navy-950),var(--navy-900) 45%,#06122b);
+      overflow-x:hidden;
+    }
+
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      inset:auto;
+      border-radius:999px;
+      filter:blur(8px);
+      pointer-events:none;
+      z-index:-1;
+    }
+    body::before{
+      width:360px;height:360px;left:-170px;top:18%;
+      background:rgba(37,215,255,.09);
+      animation:floatOrb 9s ease-in-out infinite;
+    }
+    body::after{
+      width:420px;height:420px;right:-220px;bottom:-80px;
+      background:rgba(22,104,255,.12);
+      animation:floatOrb 11s ease-in-out infinite reverse;
+    }
+    @keyframes floatOrb{50%{transform:translate3d(0,-22px,0) scale(1.06)}}
+
+    button,input,select{font:inherit}
+    button{border:0}
+    a{color:inherit;text-decoration:none}
+
+    .shell{
+      width:min(1180px,calc(100% - 28px));
+      margin-inline:auto;
+      padding:22px 0 18px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    .brand-mark{
+      width:54px;height:54px;
+      display:grid;place-items:center;
+      border-radius:18px;
+      background:linear-gradient(145deg,rgba(37,215,255,.25),rgba(22,104,255,.16));
+      border:1px solid rgba(103,232,255,.3);
+      box-shadow:0 12px 30px rgba(0,99,255,.18),inset 0 1px 0 rgba(255,255,255,.18);
+      flex:0 0 auto;
+    }
+    .brand-mark svg{width:34px;height:34px}
+    .brand-copy h1{font-size:1.28rem;margin:0;letter-spacing:.1px}
+    .brand-copy p{font-size:.78rem;color:var(--muted);margin:4px 0 0}
+
+    .status-pill{
+      display:flex;align-items:center;gap:9px;
+      color:#caffea;
+      background:rgba(71,227,162,.09);
+      border:1px solid rgba(71,227,162,.22);
+      border-radius:999px;
+      padding:9px 13px;
+      font-size:.78rem;
+      white-space:nowrap;
+    }
+    .status-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--success);
+      box-shadow:0 0 0 5px rgba(71,227,162,.11),0 0 18px rgba(71,227,162,.85);
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);
+      gap:20px;
+      align-items:stretch;
+    }
+
+    .glass{
+      border:1px solid var(--line);
+      background:linear-gradient(145deg,rgba(12,36,80,.78),rgba(5,20,49,.66));
+      box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.07);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+
+    .showcase{
+      position:relative;
+      min-height:690px;
+      border-radius:30px;
+      overflow:hidden;
+      padding:26px;
+      isolation:isolate;
+    }
+    .showcase::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg,transparent 0 46%,rgba(3,12,34,.25)),
+        radial-gradient(circle at 75% 12%,rgba(37,215,255,.13),transparent 30%);
+      z-index:-1;
+    }
+    .grid-lines{
+      position:absolute;inset:0;z-index:-2;opacity:.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom,black,transparent 74%);
+    }
+
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      color:var(--cyan-300);
+      font-weight:700;
+      font-size:.82rem;
+      margin-bottom:12px;
+    }
+    .eyebrow::before{content:"";width:26px;height:2px;border-radius:9px;background:linear-gradient(90deg,var(--cyan-400),transparent)}
+    .hero-title{
+      font-size:clamp(2rem,4vw,3.45rem);
+      line-height:1.27;
+      margin:0;
+      max-width:720px;
+      letter-spacing:-.8px;
+    }
+    .hero-title .accent{
+      background:linear-gradient(90deg,#fff,var(--cyan-300) 58%,#88aaff);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-text{
+      color:#bdc9e2;
+      max-width:620px;
+      font-size:.98rem;
+      line-height:1.95;
+      margin:14px 0 22px;
+    }
+
+    .feature-row{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-bottom:22px;
+    }
+    .feature{
+      padding:12px;
+      border-radius:16px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.075);
+    }
+    .feature svg{width:21px;height:21px;color:var(--cyan-300);margin-bottom:8px}
+    .feature strong{display:block;font-size:.85rem;margin-bottom:3px}
+    .feature span{color:var(--muted);font-size:.68rem}
+
+    .ad-wrap{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.13);
+      background:#071a3a;
+      box-shadow:0 16px 38px rgba(0,0,0,.26);
+    }
+    .ad-label{
+      position:absolute;top:12px;right:12px;z-index:4;
+      padding:6px 9px;border-radius:999px;
+      font-size:.65rem;
+      color:#dbe7ff;
+      background:rgba(3,12,34,.62);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(8px);
+    }
+    .ad-slider{position:relative;aspect-ratio:16/7}
+    .ad-slide{
+      position:absolute;inset:0;
+      opacity:0;transform:scale(1.025);
+      transition:opacity .7s ease,transform .9s ease;
+      pointer-events:none;
+    }
+    .ad-slide.active{opacity:1;transform:scale(1);pointer-events:auto}
+    .ad-slide img{width:100%;height:100%;object-fit:cover;display:block}
+    .ad-dots{
+      position:absolute;bottom:12px;left:50%;transform:translateX(-50%);
+      display:flex;gap:7px;z-index:5;
+    }
+    .ad-dot{
+      width:7px;height:7px;border-radius:50%;
+      background:rgba(255,255,255,.45);cursor:pointer;padding:0;
+      transition:.25s ease;
+    }
+    .ad-dot.active{width:24px;border-radius:99px;background:var(--white)}
+
+    .ticker{
+      margin-top:14px;
+      display:flex;align-items:center;gap:12px;
+      border-radius:16px;
+      padding:10px 12px;
+      overflow:hidden;
+      background:rgba(37,215,255,.055);
+      border:1px solid rgba(37,215,255,.12);
+    }
+    .ticker-badge{
+      display:flex;align-items:center;gap:6px;
+      color:var(--gold-400);font-size:.72rem;font-weight:800;
+      white-space:nowrap;
+      flex:0 0 auto;
+    }
+    .ticker-window{overflow:hidden;white-space:nowrap;flex:1}
+    .ticker-track{
+      display:inline-block;
+      color:#e8f1ff;
+      font-size:.78rem;
+      padding-left:100%;
+      animation:tickerMove 22s linear infinite;
+    }
+    @keyframes tickerMove{to{transform:translateX(100%)}}
+
+    .login-panel{
+      border-radius:30px;
+      padding:18px;
+      min-height:690px;
+      display:flex;
+      flex-direction:column;
+    }
+    .panel-head{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+      padding:6px 5px 16px;
+    }
+    .panel-head h2{font-size:1.45rem;margin:0 0 6px}
+    .panel-head p{margin:0;color:var(--muted);font-size:.78rem;line-height:1.7}
+    .secure-badge{
+      width:44px;height:44px;display:grid;place-items:center;flex:0 0 auto;
+      border-radius:15px;
+      background:rgba(71,227,162,.08);
+      border:1px solid rgba(71,227,162,.18);
+      color:var(--success);
+    }
+    .secure-badge svg{width:23px;height:23px}
+
+    .tabs{
+      display:grid;grid-template-columns:1fr 1fr;gap:7px;
+      border-radius:15px;
+      padding:5px;
+      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.065);
+      margin-bottom:16px;
+    }
+    .tab{
+      min-height:42px;border-radius:11px;
+      color:var(--muted);background:transparent;
+      cursor:pointer;font-weight:700;font-size:.82rem;
+      transition:.25s ease;
+    }
+    .tab.active{
+      color:#fff;
+      background:linear-gradient(135deg,rgba(22,104,255,.95),rgba(37,215,255,.48));
+      box-shadow:0 8px 20px rgba(0,93,255,.22),inset 0 1px 0 rgba(255,255,255,.22);
+    }
+
+    .form-view{display:none;animation:fadeIn .35s ease}
+    .form-view.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}}
+
+    .field{margin-bottom:14px}
+    .field-label{
+      display:flex;align-items:center;justify-content:space-between;gap:8px;
+      color:#dbe6fb;font-size:.78rem;font-weight:700;margin:0 2px 8px;
+    }
+    .field-label small{color:var(--muted);font-weight:500;font-size:.65rem}
+    .input-shell{
+      position:relative;
+      display:flex;align-items:center;
+      border-radius:15px;
+      background:rgba(255,255,255,.96);
+      border:1px solid transparent;
+      box-shadow:inset 0 1px 0 #fff,0 9px 24px rgba(0,0,0,.12);
+      transition:.25s ease;
+      overflow:hidden;
+    }
+    .input-shell:focus-within{
+      border-color:var(--cyan-400);
+      box-shadow:0 0 0 4px rgba(37,215,255,.12),0 12px 28px rgba(0,0,0,.14);
+      transform:translateY(-1px);
+    }
+    .input-icon{
+      width:49px;height:50px;display:grid;place-items:center;color:var(--blue-700);flex:0 0 auto;
+    }
+    .input-icon svg{width:21px;height:21px}
+    .input-shell input,
+    .input-shell select{
+      width:100%;height:50px;border:0;outline:0;background:transparent;
+      color:#0a214e;font-weight:800;font-size:.93rem;
+      padding:0 0 0 12px;
+      direction:ltr;text-align:right;
+    }
+    .input-shell select{direction:rtl;appearance:none;cursor:pointer;padding-left:42px}
+    .select-arrow{position:absolute;left:17px;color:#31568c;pointer-events:none;width:17px}
+    .paste-btn{
+      margin-left:7px;
+      padding:8px 10px;
+      border-radius:10px;
+      background:#eaf1ff;
+      color:#0d4fbd;
+      font-size:.67rem;font-weight:800;
+      cursor:pointer;
+    }
+
+    .speed-grid{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:8px;
+      margin-bottom:14px;
+    }
+    .speed-option{position:relative}
+    .speed-option input{position:absolute;opacity:0;pointer-events:none}
+    .speed-card{
+      min-height:62px;
+      display:flex;align-items:center;gap:10px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.035);
+      border-radius:14px;padding:10px;
+      cursor:pointer;
+      transition:.22s ease;
+    }
+    .speed-card:hover{background:rgba(255,255,255,.06);transform:translateY(-1px)}
+    .speed-icon{
+      width:35px;height:35px;border-radius:11px;display:grid;place-items:center;
+      color:var(--cyan-300);background:rgba(37,215,255,.08);
+    }
+    .speed-icon svg{width:18px;height:18px}
+    .speed-copy strong{display:block;font-size:.76rem;margin-bottom:3px}
+    .speed-copy span{display:block;color:var(--muted);font-size:.62rem}
+    .speed-option input:checked + .speed-card{
+      border-color:rgba(37,215,255,.52);
+      background:linear-gradient(135deg,rgba(22,104,255,.18),rgba(37,215,255,.09));
+      box-shadow:0 0 0 3px rgba(37,215,255,.07);
+    }
+
+    .option-row{
+      display:flex;align-items:flex-start;gap:10px;
+      padding:11px 12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.075);
+      margin-bottom:13px;
+    }
+    .option-row input{margin-top:3px;accent-color:var(--cyan-400)}
+    .option-row strong{font-size:.75rem;display:block;margin-bottom:3px}
+    .option-row span{font-size:.64rem;color:var(--muted);line-height:1.6;display:block}
+
+    .error-box{
+      display:none;
+      align-items:center;gap:8px;
+      color:#ffd9df;
+      background:rgba(255,93,118,.09);
+      border:1px solid rgba(255,93,118,.22);
+      border-radius:12px;
+      padding:10px 11px;
+      margin-bottom:12px;
+      font-size:.72rem;
+    }
+    .error-box.show{display:flex}
+    .error-box svg{width:17px;height:17px;flex:0 0 auto;color:var(--danger)}
+
+    .primary-btn{
+      width:100%;min-height:52px;
+      border-radius:15px;
+      color:#031330;
+      background:linear-gradient(100deg,#72e8ff,#41bfff 45%,#f5c55b 145%);
+      font-weight:900;font-size:.95rem;
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:9px;
+      box-shadow:0 14px 30px rgba(37,167,255,.25),inset 0 1px 0 rgba(255,255,255,.65);
+      transition:.25s ease;
+    }
+    .primary-btn:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(37,167,255,.31),inset 0 1px 0 rgba(255,255,255,.65)}
+    .primary-btn:active{transform:translateY(0)}
+    .primary-btn svg{width:20px;height:20px}
+    .primary-btn.loading{pointer-events:none;opacity:.84}
+    .primary-btn.loading svg{animation:spin .9s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .safety-note{
+      display:flex;align-items:center;justify-content:center;gap:7px;
+      color:#95a8cb;font-size:.63rem;margin:11px 0 0;
+    }
+    .safety-note svg{width:14px;height:14px;color:var(--success)}
+
+    .quick-links{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+      margin-top:auto;padding-top:17px;
+    }
+    .quick-link{
+      min-height:69px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.075);
+      background:rgba(255,255,255,.03);
+      color:#dce8ff;
+      font-size:.67rem;font-weight:700;
+      transition:.22s ease;
+    }
+    .quick-link:hover{background:rgba(255,255,255,.06);transform:translateY(-2px)}
+    .quick-link svg{width:20px;height:20px;color:var(--cyan-300)}
+
+    .contact-line{
+      text-align:center;color:var(--muted);font-size:.68rem;line-height:1.8;
+      padding:14px 4px 0;
+    }
+    .contact-line strong{color:#fff;direction:ltr;display:inline-block}
+
+    .speed-status{
+      display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px;
+    }
+    .speed-status-box{
+      border-radius:14px;padding:12px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.075);
+    }
+    .speed-status-box span{display:block;color:var(--muted);font-size:.64rem;margin-bottom:5px}
+    .speed-status-box strong{font-size:.84rem}
+
+    footer{
+      display:flex;align-items:center;justify-content:center;gap:9px;
+      color:#6f83a9;font-size:.62rem;padding:16px 0 0;text-align:center;
+    }
+    footer svg{width:13px;height:13px}
+
+    @media (max-width:900px){
+      .layout{grid-template-columns:1fr}
+      .showcase{min-height:auto}
+      .login-panel{min-height:auto}
+    }
+    @media (max-width:560px){
+      .shell{width:min(100% - 18px,500px);padding-top:12px}
+      .topbar{margin-bottom:12px}
+      .brand-mark{width:46px;height:46px;border-radius:15px}
+      .brand-mark svg{width:29px;height:29px}
+      .brand-copy h1{font-size:1.05rem}
+      .brand-copy p{font-size:.66rem}
+      .status-pill{padding:8px 10px;font-size:.66rem}
+      .layout{gap:12px}
+      .showcase,.login-panel{border-radius:23px}
+      .showcase{padding:20px 16px}
+      .hero-title{font-size:1.82rem}
+      .hero-text{font-size:.82rem;line-height:1.8}
+      .feature-row{gap:7px}
+      .feature{padding:9px 7px}
+      .feature strong{font-size:.7rem}
+      .feature span{font-size:.57rem}
+      .ad-slider{aspect-ratio:16/8.3}
+      .login-panel{padding:13px}
+      .panel-head{padding-inline:3px}
+      .panel-head h2{font-size:1.23rem}
+      .quick-link{font-size:.61rem}
+    }
+    @media (max-width:380px){
+      .status-pill span:last-child{display:none}
+      .speed-grid{grid-template-columns:1fr}
+      .feature-row{grid-template-columns:1fr}
+      .feature{display:flex;align-items:center;gap:9px}
+      .feature svg{margin:0}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="الأديب نت">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none">
+            <path d="M8 19.5C17.2 10.5 30.8 10.5 40 19.5" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M14 26c6-5.8 14-5.8 20 0" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M20 32.5c2.3-2.1 5.7-2.1 8 0" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="24" cy="39" r="3.2" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <h1>شبكة الأديب نت</h1>
+          <p>إنترنت لاسلكي سريع وآمن</p>
+        </span>
+      </a>
+      <div class="status-pill" role="status">
+        <span class="status-dot"></span>
+        <span>الشبكة تعمل بكفاءة</span>
+      </div>
+    </header>
+
+    <section class="layout">
+      <section class="showcase glass" aria-label="مميزات وإعلانات الشبكة">
+        <div class="grid-lines"></div>
+        <span class="eyebrow">تجربة إنترنت صُممت للسرعة</span>
+        <h2 class="hero-title">اتصال ثابت، حماية أعلى، و<span class="accent">سرعة تشعر بها من أول لحظة.</span></h2>
+        <p class="hero-text">مرحبًا بك في بوابة الأديب نت الجديدة. أدخل رقم الكرت، اختر السرعة المناسبة لاستخدامك، واستمتع باتصال موثوق للمشاهدة والتصفح والألعاب.</p>
+
+        <div class="feature-row">
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4.5 5v5.5c0 5 3.2 9.4 7.5 11.5 4.3-2.1 7.5-6.5 7.5-11.5V5L12 2Z"/><path d="m9 12 2 2 4-4"/></svg>
+            <strong>تصفح آمن</strong><span>حماية واستقرار أفضل</span>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83M12 18v4m4.24-5.76 2.83 2.83"/><circle cx="12" cy="12" r="4"/></svg>
+            <strong>سرعة فائقة</strong><span>خيارات تناسب احتياجك</span>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h3l2-5 4 10 2-5h7"/><path d="M4 4h16v16H4z" opacity=".35"/></svg>
+            <strong>شبكة مستقرة</strong><span>أداء متوازن طوال الوقت</span>
+          </div>
+        </div>
+
+        <div class="ad-wrap">
+          <span class="ad-label">مساحة إعلانية</span>
+          <div class="ad-slider" id="adSlider">
+            <a class="ad-slide active" href="#" aria-label="إعلان سرعة الأديب نت"><img src="assets/banner-fast.svg" alt="سرعة فائقة من الأديب نت" /></a>
+            <a class="ad-slide" href="#" aria-label="إعلان أمان الأديب نت"><img src="assets/banner-safe.svg" alt="اتصال آمن ومستقر" /></a>
+            <a class="ad-slide" href="#" aria-label="إعلان عروض الأديب نت"><img src="assets/banner-offer.svg" alt="عروض وباقات الأديب نت" /></a>
+          </div>
+          <div class="ad-dots" id="adDots" aria-label="التنقل بين الإعلانات"></div>
+        </div>
+
+        <div class="ticker" aria-label="إشعارات الشبكة">
+          <div class="ticker-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+            تنبيه
+          </div>
+          <div class="ticker-window"><div class="ticker-track" id="tickerText">أهلًا بك في شبكة الأديب نت — حافظ على رقم كرتك ولا تشاركه مع الآخرين — خدمة العملاء جاهزة لمساعدتك.</div></div>
+        </div>
+      </section>
+
+      <section class="login-panel glass" aria-label="تسجيل الدخول">
+        <div class="panel-head">
+          <div>
+            <h2>مرحبًا بك 👋</h2>
+            <p>أدخل بيانات الكرت للاتصال بالشبكة أو تحديث السرعة.</p>
+          </div>
+          <div class="secure-badge" title="اتصال آمن">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v3"/></svg>
+          </div>
+        </div>
+
+        <div class="tabs" role="tablist">
+          <button class="tab active" type="button" data-tab="login" role="tab" aria-selected="true">تسجيل الدخول</button>
+          <button class="tab" type="button" data-tab="speed" role="tab" aria-selected="false">تحديث السرعة</button>
+        </div>
+
+        <div class="form-view active" id="loginView">
+          $(if chap-id)
+          <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+            <input type="hidden" name="username" />
+            <input type="hidden" name="password" />
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+          </form>
+          <script src="/md5.js"></script>
+          $(endif)
+
+          <form id="loginForm" name="login" action="$(link-login-only)" method="post" autocomplete="off">
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+            <input type="hidden" name="password" id="loginPassword" />
+            <input type="hidden" name="speed" id="selectedSpeed" value="balanced" />
+
+            <div class="field">
+              <label class="field-label" for="cardNumber"><span>رقم الكرت</span><small>يُكتب كما هو مطبوع</small></label>
+              <div class="input-shell">
+                <span class="input-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/></svg>
+                </span>
+                <input id="cardNumber" name="username" type="text" inputmode="numeric" autocomplete="username" maxlength="32" placeholder="أدخل رقم الكرت" aria-required="true" />
+                <button class="paste-btn" id="pasteBtn" type="button">لصق</button>
+              </div>
+            </div>
+
+            <div class="field-label"><span>اختر سرعة الإنترنت</span><small>يمكن تغييرها لاحقًا</small></div>
+            <div class="speed-grid">
+              <label class="speed-option">
+                <input type="radio" name="speedChoice" value="economy" />
+                <span class="speed-card">
+                  <span class="speed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12a7 7 0 0 1 14 0"/><path d="m12 12 4-4"/><circle cx="12" cy="12" r="1"/></svg></span>
+                  <span class="speed-copy"><strong>اقتصادية</strong><span>للتصفح والمراسلة</span></span>
+                </span>
+              </label>
+              <label class="speed-option">
+                <input type="radio" name="speedChoice" value="balanced" checked />
+                <span class="speed-card">
+                  <span class="speed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12a7 7 0 0 1 14 0"/><path d="m12 12 5-2"/><circle cx="12" cy="12" r="1"/></svg></span>
+                  <span class="speed-copy"><strong>متوازنة</strong><span>أفضل اختيار يومي</span></span>
+                </span>
+              </label>
+              <label class="speed-option">
+                <input type="radio" name="speedChoice" value="fast" />
+                <span class="speed-card">
+                  <span class="speed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12a7 7 0 0 1 14 0"/><path d="m12 12 6-5"/><circle cx="12" cy="12" r="1"/></svg></span>
+                  <span class="speed-copy"><strong>سريعة</strong><span>للفيديو والتطبيقات</span></span>
+                </span>
+              </label>
+              <label class="speed-option">
+                <input type="radio" name="speedChoice" value="turbo" />
+                <span class="speed-card">
+                  <span class="speed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4.5 13H11l-1 9L19.5 10H13l0-8Z"/></svg></span>
+                  <span class="speed-copy"><strong>فائقة</strong><span>للألعاب والبث</span></span>
+                </span>
+              </label>
+            </div>
+
+            <label class="option-row">
+              <input id="updatesToggle" type="checkbox" checked />
+              <span><strong>السماح بالتحديثات والمتجر</strong><span>يمكنك إيقاف تحديثات التطبيقات لتقليل استهلاك الرصيد عند الحاجة.</span></span>
+            </label>
+
+            <div class="error-box" id="errorBox" role="alert">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 17h.01"/></svg>
+              <span id="errorText">يرجى التأكد من رقم الكرت والمحاولة مجددًا.</span>
+            </div>
+            $(if error)<script>window.hotspotError = '$(error)';</script>$(endif)
+
+            <button class="primary-btn" id="loginBtn" type="submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/><path d="M14 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"/></svg>
+              <span>اتصل الآن</span>
+            </button>
+            <p class="safety-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>لن نطلب منك أي بيانات شخصية أو معلومات حساسة.</p>
+          </form>
+        </div>
+
+        <div class="form-view" id="speedView">
+          <form id="speedForm" autocomplete="off">
+            <div class="speed-status">
+              <div class="speed-status-box"><span>الحالة</span><strong>جاهز للتحديث</strong></div>
+              <div class="speed-status-box"><span>التنفيذ</span><strong>خلال لحظات</strong></div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="speedCard"><span>رقم الكرت</span><small>الكرت المستخدم حاليًا</small></label>
+              <div class="input-shell">
+                <span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/></svg></span>
+                <input id="speedCard" type="text" inputmode="numeric" maxlength="32" placeholder="أدخل رقم الكرت" />
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="speedSelect"><span>السرعة الجديدة</span><small>اختر ما يناسبك</small></label>
+              <div class="input-shell">
+                <span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12a7 7 0 0 1 14 0"/><path d="m12 12 5-4"/><circle cx="12" cy="12" r="1"/></svg></span>
+                <select id="speedSelect">
+                  <option value="economy">اقتصادية — للتصفح والمراسلة</option>
+                  <option value="balanced" selected>متوازنة — الاستخدام اليومي</option>
+                  <option value="fast">سريعة — الفيديو والتطبيقات</option>
+                  <option value="turbo">فائقة — الألعاب والبث</option>
+                </select>
+                <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
+            </div>
+            <div class="error-box" id="speedError" role="alert">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 17h.01"/></svg>
+              <span>أدخل رقم الكرت أولًا.</span>
+            </div>
+            <button class="primary-btn" id="speedBtn" type="submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v6h-6"/></svg>
+              <span>تحديث السرعة</span>
+            </button>
+            <p class="safety-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>تحديث السرعة يحتاج ربطه بخدمة الشبكة من الإعدادات.</p>
+          </form>
+        </div>
+
+        <div class="quick-links">
+          <a class="quick-link" href="#prices">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h5M8 17h7"/></svg>
+            الأسعار والباقات
+          </a>
+          <a class="quick-link" href="#points">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5 7-12A7 7 0 1 0 5 9c0 7 7 12 7 12Z"/><circle cx="12" cy="9" r="2"/></svg>
+            نقاط البيع
+          </a>
+          <a class="quick-link" href="tel:784256683">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.3 1.73.5 2.63.62A2 2 0 0 1 22 16.9Z"/></svg>
+            خدمة العملاء
+          </a>
+        </div>
+        <div class="contact-line">للدعم والمساعدة: <strong>784256683 — 775880097</strong></div>
+      </section>
+    </section>
+
+    <footer>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+      جميع الحقوق محفوظة لشبكة الأديب نت <span id="year"></span>
+    </footer>
+  </main>
+
+  <script>
+    const CONFIG = {
+      announcements: [
+        'أهلًا بك في شبكة الأديب نت — حافظ على رقم كرتك ولا تشاركه مع الآخرين.',
+        'اختر السرعة التي تناسب استخدامك لتستفيد من رصيد الكرت بأفضل شكل.',
+        'للدعم الفني ونقاط البيع تواصل معنا على 784256683 أو 775880097.'
+      ],
+      speedUpdateEndpoint: '' // ضع رابط خدمة تحديث السرعة هنا عند توفره.
+    };
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const slides = [...document.querySelectorAll('.ad-slide')];
+    const dotsContainer = document.getElementById('adDots');
+    let currentSlide = 0;
+    let sliderTimer;
+
+    function showSlide(index){
+      currentSlide = (index + slides.length) % slides.length;
+      slides.forEach((slide,i)=>slide.classList.toggle('active',i===currentSlide));
+      [...dotsContainer.children].forEach((dot,i)=>dot.classList.toggle('active',i===currentSlide));
+    }
+    slides.forEach((_,i)=>{
+      const dot=document.createElement('button');
+      dot.className='ad-dot'+(i===0?' active':'');
+      dot.type='button';
+      dot.setAttribute('aria-label',`الإعلان ${i+1}`);
+      dot.addEventListener('click',()=>{showSlide(i);restartSlider();});
+      dotsContainer.appendChild(dot);
+    });
+    function restartSlider(){clearInterval(sliderTimer);sliderTimer=setInterval(()=>showSlide(currentSlide+1),5000)}
+    restartSlider();
+
+    const tickerText=document.getElementById('tickerText');
+    tickerText.textContent=CONFIG.announcements.join('     •     ');
+
+    document.querySelectorAll('.tab').forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        document.querySelectorAll('.tab').forEach(t=>{
+          const active=t===tab;
+          t.classList.toggle('active',active);
+          t.setAttribute('aria-selected',active?'true':'false');
+        });
+        const target=tab.dataset.tab;
+        document.getElementById('loginView').classList.toggle('active',target==='login');
+        document.getElementById('speedView').classList.toggle('active',target==='speed');
+      });
+    });
+
+    const cardInput=document.getElementById('cardNumber');
+    const loginPassword=document.getElementById('loginPassword');
+    const selectedSpeed=document.getElementById('selectedSpeed');
+    const errorBox=document.getElementById('errorBox');
+    const errorText=document.getElementById('errorText');
+    const loginBtn=document.getElementById('loginBtn');
+
+    function normalizeCard(value){return value.replace(/[\s-]/g,'').replace(/[^0-9A-Za-z]/g,'')}
+    cardInput.addEventListener('input',()=>{cardInput.value=normalizeCard(cardInput.value);errorBox.classList.remove('show')});
+    document.querySelectorAll('input[name="speedChoice"]').forEach(input=>input.addEventListener('change',()=>selectedSpeed.value=input.value));
+
+    document.getElementById('pasteBtn').addEventListener('click',async()=>{
+      try{
+        const text=await navigator.clipboard.readText();
+        cardInput.value=normalizeCard(text);
+        cardInput.focus();
+      }catch(_){cardInput.focus()}
+    });
+
+    if(window.hotspotError){
+      errorText.textContent=window.hotspotError;
+      errorBox.classList.add('show');
+    }
+
+    document.getElementById('loginForm').addEventListener('submit',function(event){
+      const card=normalizeCard(cardInput.value);
+      if(card.length<4){
+        event.preventDefault();
+        errorText.textContent='يرجى إدخال رقم كرت صحيح.';
+        errorBox.classList.add('show');
+        cardInput.focus();
+        return;
+      }
+      cardInput.value=card;
+      loginPassword.value=card;
+      loginBtn.classList.add('loading');
+      loginBtn.querySelector('span').textContent='جارٍ الاتصال...';
+
+      // دعم MikroTik CHAP: رقم الكرت يستخدم كاسم مستخدم وكلمة مرور.
+      const chapEnabled = typeof window.hotspotError !== 'undefined' || document.querySelector('form[name="sendin"]');
+      if(document.sendin && typeof hexMD5 === 'function'){
+        event.preventDefault();
+        document.sendin.username.value=card;
+        document.sendin.password.value=hexMD5('$(chap-id)'+card+'$(chap-challenge)');
+        document.sendin.submit();
+      }
+    });
+
+    const speedForm=document.getElementById('speedForm');
+    const speedCard=document.getElementById('speedCard');
+    const speedError=document.getElementById('speedError');
+    const speedBtn=document.getElementById('speedBtn');
+    speedCard.addEventListener('input',()=>{speedCard.value=normalizeCard(speedCard.value);speedError.classList.remove('show')});
+    speedForm.addEventListener('submit',async event=>{
+      event.preventDefault();
+      const card=normalizeCard(speedCard.value);
+      if(card.length<4){speedError.classList.add('show');speedCard.focus();return}
+      const speed=document.getElementById('speedSelect').value;
+      const original=speedBtn.innerHTML;
+      speedBtn.classList.add('loading');
+      speedBtn.querySelector('span').textContent='جارٍ التحديث...';
+      try{
+        if(CONFIG.speedUpdateEndpoint){
+          const response=await fetch(CONFIG.speedUpdateEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({card,speed})});
+          if(!response.ok) throw new Error('تعذر تحديث السرعة');
+          speedBtn.querySelector('span').textContent='تم تحديث السرعة بنجاح';
+        }else{
+          await new Promise(resolve=>setTimeout(resolve,900));
+          speedBtn.querySelector('span').textContent='الواجهة جاهزة للربط';
+        }
+      }catch(error){
+        speedError.querySelector('span').textContent=error.message||'تعذر تحديث السرعة الآن.';
+        speedError.classList.add('show');
+      }finally{
+        setTimeout(()=>{speedBtn.classList.remove('loading');speedBtn.innerHTML=original},1700);
+      }
+    });
+  </script>
+</body>
+</html>
