@@ -25,7 +25,8 @@ const CONFIG = {
     'يمكنك الدخول أو تحديث سرعة الكرت من النموذج نفسه بسهولة.'
   ],
   speedUpdateEndpoint: '',
-  sliderInterval: 5400
+  sliderInterval: 5400,
+  minimumAttemptInterval: 1500
 };
 
 const cardInput = document.getElementById('cardNumber');
@@ -39,6 +40,13 @@ const errorText = document.getElementById('errorText');
 const noticeBox = document.getElementById('noticeBox');
 const noticeText = document.getElementById('noticeText');
 const speedTip = document.getElementById('speedTip');
+const loginButton = document.getElementById('loginBtn');
+
+if (cardInput) {
+  cardInput.setAttribute('autocomplete', 'off');
+  cardInput.setAttribute('autocapitalize', 'none');
+  cardInput.setAttribute('spellcheck', 'false');
+}
 
 const speedMessages = {
   economy: 'السرعة الاقتصادية مناسبة للمراسلة والتصفح الخفيف وتساعد على تقليل الاستهلاك.',
@@ -47,12 +55,26 @@ const speedMessages = {
   turbo: 'السرعة الفائقة مناسبة للألعاب والبث المباشر عند توفر إشارة قوية.'
 };
 
+let lastLoginAttempt = 0;
+let loginInProgress = false;
+
 function getSpeed() {
   return document.querySelector('input[name="speedChoice"]:checked')?.value || 'balanced';
 }
 
 function cleanCard(value) {
-  return String(value || '').replace(/\s+/g, '').replace(/[^0-9A-Za-z_-]/g, '');
+  return String(value || '')
+    .replace(/\s+/g, '')
+    .replace(/[^0-9A-Za-z_-]/g, '')
+    .slice(0, 32);
+}
+
+function cleanMessage(value) {
+  return String(value || '')
+    .replace(/[\u0000-\u001F\u007F]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 180);
 }
 
 function hideMessages() {
@@ -62,14 +84,14 @@ function hideMessages() {
 
 function showError(message) {
   if (!errorBox || !errorText) return;
-  errorText.textContent = message;
+  errorText.textContent = cleanMessage(message) || 'تعذر تسجيل الدخول، تحقق من بيانات الكرت.';
   errorBox.classList.add('show');
   noticeBox?.classList.remove('show');
 }
 
 function showNotice(message) {
   if (!noticeBox || !noticeText) return;
-  noticeText.textContent = message;
+  noticeText.textContent = cleanMessage(message);
   noticeBox.classList.add('show');
   errorBox?.classList.remove('show');
 }
@@ -77,13 +99,22 @@ function showNotice(message) {
 function validateCard() {
   const value = cleanCard(cardInput?.value);
   if (cardInput) cardInput.value = value;
+
   if (value.length < 4) {
     showError('يرجى إدخال رقم الكرت كاملًا كما هو مطبوع.');
     cardInput?.focus();
     return false;
   }
+
   hideMessages();
   return true;
+}
+
+function isRapidAttempt() {
+  const now = Date.now();
+  if (now - lastLoginAttempt < CONFIG.minimumAttemptInterval) return true;
+  lastLoginAttempt = now;
+  return false;
 }
 
 document.querySelectorAll('input[name="speedChoice"]').forEach((input) => {
@@ -93,6 +124,10 @@ document.querySelectorAll('input[name="speedChoice"]').forEach((input) => {
     const tipText = speedTip?.querySelector('span');
     if (tipText) tipText.textContent = speedMessages[speed];
   });
+});
+
+cardInput?.addEventListener('blur', () => {
+  cardInput.value = cleanCard(cardInput.value);
 });
 
 updatesToggle?.addEventListener('change', () => {
@@ -114,6 +149,12 @@ document.getElementById('pasteBtn')?.addEventListener('click', async () => {
 });
 
 loginForm?.addEventListener('submit', (event) => {
+  if (loginInProgress || isRapidAttempt()) {
+    event.preventDefault();
+    showNotice('يرجى الانتظار لحظة قبل إعادة المحاولة.');
+    return;
+  }
+
   if (!validateCard()) {
     event.preventDefault();
     return;
@@ -129,9 +170,13 @@ loginForm?.addEventListener('submit', (event) => {
 
   if (isPreview) {
     event.preventDefault();
-    showNotice('وضع المعاينة يعمل بنجاح. تسجيل الدخول الحقيقي يبدأ بعد رفع الملفات إلى مجلد Hotspot في الراوتر.');
+    showNotice('هذه معاينة للواجهة فقط. قبول الكرت الحقيقي يتم حصريًا من نظام الشبكة الآمن.');
+    if (loginPassword) loginPassword.value = '';
     return;
   }
+
+  loginInProgress = true;
+  if (loginButton) loginButton.disabled = true;
 
   if (document.sendin && typeof hexMD5 === 'function') {
     event.preventDefault();
@@ -151,7 +196,7 @@ document.getElementById('updateSpeedBtn')?.addEventListener('click', async () =>
   };
 
   if (!CONFIG.speedUpdateEndpoint) {
-    showNotice('زر تحديث السرعة جاهز، ويحتاج فقط إلى رابط خدمة التحديث من نظام الشبكة.');
+    showNotice('تحديث السرعة غير متصل حاليًا بخادم الشبكة، لذلك لم يتم تعديل أي بيانات.');
     return;
   }
 
@@ -164,10 +209,14 @@ document.getElementById('updateSpeedBtn')?.addEventListener('click', async () =>
     const response = await fetch(CONFIG.speedUpdateEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      credentials: 'same-origin',
+      cache: 'no-store',
+      redirect: 'error'
     });
+
     if (!response.ok) throw new Error('request_failed');
-    showNotice('تم إرسال طلب تحديث السرعة بنجاح.');
+    showNotice('تم إرسال طلب تحديث السرعة إلى خادم الشبكة.');
   } catch (error) {
     showError('تعذر تحديث السرعة الآن. تحقق من الاتصال أو تواصل مع خدمة العملاء.');
   } finally {
@@ -176,9 +225,17 @@ document.getElementById('updateSpeedBtn')?.addEventListener('click', async () =>
   }
 });
 
-if (window.hotspotError && window.hotspotError !== '$(error)') {
-  showError(window.hotspotError);
+const hotspotError = cleanMessage(window.hotspotError);
+if (hotspotError && hotspotError !== '$(error)' && !hotspotError.includes('$(')) {
+  showError('تعذر تسجيل الدخول، تحقق من بيانات الكرت ثم حاول مجددًا.');
 }
+
+window.addEventListener('pageshow', (event) => {
+  if (!event.persisted) return;
+  loginInProgress = false;
+  if (loginButton) loginButton.disabled = false;
+  if (loginPassword) loginPassword.value = '';
+});
 
 const tickerText = document.getElementById('tickerText');
 let tickerIndex = 0;
