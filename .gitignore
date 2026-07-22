@@ -1,0 +1,23 @@
+# لا ترفع مفاتيح أو أسرار أو إعدادات محلية إلى GitHub
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.jks
+*.keystore
+secrets/
+private/
+credentials*.json
+service-account*.json
+
+# أدوات التطوير والنشر
+.vercel/
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
