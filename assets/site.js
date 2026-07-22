@@ -1,3 +1,23 @@
+function removeUnprocessedMikroTikDirectives() {
+  if (!document.body || typeof NodeFilter === 'undefined') return;
+
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+
+  while (walker.nextNode()) {
+    const value = walker.currentNode.nodeValue || '';
+    if (/\$\((?:if\s+chap-id|endif)\)/i.test(value)) {
+      nodes.push(walker.currentNode);
+    }
+  }
+
+  nodes.forEach((node) => {
+    node.nodeValue = (node.nodeValue || '').replace(/\$\((?:if\s+chap-id|endif)\)/gi, '');
+  });
+}
+
+removeUnprocessedMikroTikDirectives();
+
 const CONFIG = {
   announcements: [
     'مرحبًا بك في شبكة الأديب نت — احتفظ برقم كرتك ولا تشاركه مع الآخرين.',
