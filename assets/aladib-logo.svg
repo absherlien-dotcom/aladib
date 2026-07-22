@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="190" viewBox="0 0 760 190" role="img" aria-labelledby="title desc">
+  <title id="title">شعار شبكة الأديب نت</title>
+  <desc id="desc">درع رقمي يجمع إشارة الواي فاي ومسار برق للدلالة على السرعة والأمان</desc>
+  <defs>
+    <linearGradient id="shield" x1="25" y1="20" x2="180" y2="175" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#21E6FF"/>
+      <stop offset=".48" stop-color="#1787FF"/>
+      <stop offset="1" stop-color="#3155FF"/>
+    </linearGradient>
+    <linearGradient id="bolt" x1="84" y1="49" x2="131" y2="139" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#A6F5FF"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <g transform="translate(16 10)">
+    <path d="M88 5 158 31v53c0 42-25 74-70 94C43 158 18 126 18 84V31L88 5Z" fill="#061A3C" stroke="url(#shield)" stroke-width="6"/>
+    <path d="M45 75c24-23 62-23 86 0" fill="none" stroke="#5CEBFF" stroke-width="9" stroke-linecap="round" opacity=".98"/>
+    <path d="M59 94c16-15 42-15 58 0" fill="none" stroke="#3E9FFF" stroke-width="9" stroke-linecap="round"/>
+    <path d="M73 112c8-7 22-7 30 0" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+    <path d="m95 46-28 54h22l-10 39 39-61H96l12-32H95Z" fill="url(#bolt)" filter="url(#glow)"/>
+    <circle cx="88" cy="130" r="5.5" fill="#21E6FF"/>
+  </g>
+
+  <g transform="translate(210 34)" font-family="Tahoma, Arial, sans-serif" text-anchor="start">
+    <text x="0" y="58" fill="#FFFFFF" font-size="55" font-weight="800">شبكة الأديب نت</text>
+    <text x="3" y="103" fill="#72EFFF" font-size="23" font-weight="700" letter-spacing="1.6">ALADIB NET</text>
+    <path d="M2 126H474" stroke="#2A76FF" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="486" cy="126" r="4" fill="#21E6FF"/>
+    <text x="3" y="157" fill="#AFC3E8" font-size="20">سرعة خارقة • أمان قوي • أداء ثابت</text>
+  </g>
+</svg>
